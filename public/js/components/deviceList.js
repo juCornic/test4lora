@@ -12,42 +12,23 @@
 	
 	function getDateString(date)
 	{
-		/*
-		var year = (date.getYear() + 1900).toString();
-		var month = (date.getMonth() + 1).toString();
-		var day = date.getDate().toString();
-		
-		if (month.length == 1)
-		{
-			month = "0" + month;
-		}
-		
-		if (day.length == 1)
-		{
-			day = "0" + day;
-		}		
-		
-		return year + "-" + month + "-" + day;*/
-		
 		return date.toISOString().split("T")[0];
 	}
 	
 	function getStartDateString(date)
 	{
-		/*
-		var year = (date.getYear() + 1900).toString();
-		var month = (date.getMonth() + 1).toString();
-		var day = date.getDate().toString();
-		var temp = Date.parse(day + "/" + month + "/" + year);
-				
-		return temp.toISOString();*/
+		var start = date;
+		start.setHours(0,0,0,0);	
 		
-		return getDateString(date) + "T00:00:00.000Z";
+		return start.toISOString();
 	}
 	
 	function getEndDateString(date)
 	{
-		return getDateString(date) + "T23:59:59.000Z";
+		var end = date;
+		end.setHours(23,59,59,999);	
+		
+		return end.toISOString();
 	}
 	
 	function getLocalDateString(date)
@@ -98,9 +79,10 @@
 		
 			return React.createElement("div", { style: { height:"100%", position: "absolute", left:"310px"}},
 						React.createElement("div", null, 
-							React.createElement("br"),
+							React.createElement("h4", null, this.props.device.name + " - " + this.props.device.devEUI),
 							"Filtre date : ",							
-							React.createElement("input", {type:"date", value: getDateString( this.state.date ), onChange: this.dateChange })							
+							React.createElement("input", {type:"date", value: getDateString( this.state.date ), onChange: this.dateChange })/*,						
+							React.createElement("button", null, "Exporter en CSV")*/
 						),
 						React.createElement("br"),
 						React.createElement("div", { style: { height:"75%", overflow:"auto" } },
