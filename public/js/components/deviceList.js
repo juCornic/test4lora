@@ -12,6 +12,7 @@
 	
 	function getDateString(date)
 	{
+		/*
 		var year = (date.getYear() + 1900).toString();
 		var month = (date.getMonth() + 1).toString();
 		var day = date.getDate().toString();
@@ -24,13 +25,23 @@
 		if (day.length == 1)
 		{
 			day = "0" + day;
-		}
+		}		
 		
-		return year + "-" + month + "-" + day;
+		return year + "-" + month + "-" + day;*/
+		
+		return date.toISOString().split("T")[0];
 	}
 	
 	function getStartDateString(date)
 	{
+		/*
+		var year = (date.getYear() + 1900).toString();
+		var month = (date.getMonth() + 1).toString();
+		var day = date.getDate().toString();
+		var temp = Date.parse(day + "/" + month + "/" + year);
+				
+		return temp.toISOString();*/
+		
 		return getDateString(date) + "T00:00:00.000Z";
 	}
 	
@@ -66,7 +77,7 @@
 		
 			var req = new XMLHttpRequest();
             req.onload = reqListener;
-            req.open('get', 'https://liveobjects.orange-business.com/api/v0/data/streams/urn:lora:' + deviceId  + '!uplink?limit=200&timeRange=' + getStartDateString(this.state.date) + "," + getEndDateString(this.state.date), false);
+            req.open('get', 'https://liveobjects.orange-business.com/api/v0/data/streams/urn:lora:' + deviceId  + '!uplink?limit=1000&timeRange=' + getStartDateString(this.state.date) + "," + getEndDateString(this.state.date), false);
 			req.setRequestHeader("X-API-Key", "310def0e53f04c0b814fa8f3c05124fb");
             req.send();
 
@@ -96,6 +107,7 @@
 							React.createElement("table", null , 
 
 								React.createElement("tr", null,
+									React.createElement("th", null, "#"),
 									React.createElement("th", null, "Date et heure"),
 									React.createElement("th", null, "Valeur")
 								),
@@ -110,6 +122,7 @@
 									}
 									
 									return React.createElement("tr", {style : { background: backColor}},
+										React.createElement("td",{ style :{ padding:"0 15px 0 15px"}}, dataList[0].length - index ),
 										React.createElement("td",{ style :{ padding:"0 15px 0 15px"}}, getLocalDateString(data.timestamp)),
 										React.createElement("td", { style :{ padding:"0 15px 0 15px"}}, decodeHexa(data.value.payload))
 									)
