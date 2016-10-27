@@ -1,4 +1,4 @@
-heroku-node
+kilora
 ===========
 
-Code for the tutorial by @sevilayha: Deploying Node Apps to Heroku
+Orange Live Objects LPWA solution
