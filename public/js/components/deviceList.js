@@ -47,14 +47,13 @@
 	
 		getInitialState: function()
 		{
-			deviceId = this.props.device.devEUI;		
-			
 			return { date: new Date(), pageId : 0};
 		},
 	
         render: function ()
         {				
 			dataList = [];
+			deviceId = this.props.device.devEUI;	
 		
 			var req = new XMLHttpRequest();
             req.onload = reqListener;
@@ -90,6 +89,7 @@
 
 								React.createElement("tr", null,
 									React.createElement("th", null, "#"),
+									React.createElement("th", null, "fcnt"),
 									React.createElement("th", null, "Date et heure"),
 									React.createElement("th", null, "Valeur")
 								),
@@ -105,6 +105,7 @@
 									
 									return React.createElement("tr", {style : { background: backColor}},
 										React.createElement("td",{ style :{ padding:"0 15px 0 15px"}}, dataList[0].length - index ),
+										React.createElement("td",{ style :{ padding:"0 15px 0 15px"}}, data.value.fcnt ),
 										React.createElement("td",{ style :{ padding:"0 15px 0 15px"}}, getLocalDateString(data.timestamp)),
 										React.createElement("td", { style :{ padding:"0 15px 0 15px"}}, decodeHexa(data.value.payload))
 									)
