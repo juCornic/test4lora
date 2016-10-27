@@ -45,6 +45,32 @@
 			this.setState({ date : new Date(sender.target.value)});
 		},
 	
+		exportClick: function()
+		{
+			var separator = ";";
+			var csvText = "";			
+			
+			csvText = "data:text/csv;charset=utf-8,";
+			csvText += "#" + separator + "fcnt" + separator + "Date et heure" + separator + "Valeur\n";
+			
+			for(var i = 0 ; i < dataList[0].length ; i++)
+			{
+				csvText += (dataList[0].length - i).toString() + separator;
+				csvText += dataList[0][i].value.fcnt.toString() + separator;
+				csvText += getLocalDateString(dataList[0][i].timestamp).replace("à", "") + separator;
+				csvText += decodeHexa(dataList[0][i].value.payload) + separator;
+				csvText += "\n";
+			}
+			
+			var encodedUri = encodeURI(csvText);
+			var href = document.getElementById("exportCSV");
+			
+			href.setAttribute("href", encodedUri);
+			href.setAttribute("download", "export.csv");
+			
+			href.click();
+		},
+	
 		getInitialState: function()
 		{
 			return { date: new Date(), pageId : 0};
@@ -66,22 +92,15 @@
 				var datas = JSON.parse(this.responseText);
 				
                 dataList.push(datas);
-				
-				/*
-				if (datas.length == 100)
-				{
-					req.open('get', 'https://liveobjects.orange-business.com/api/v0/data/streams/urn:lora:' + deviceId + '!uplink?timeRange=' + getStartDateString(date) + "," + getEndDateString(date) + '&bookmarkId=' + datas[datas.length - 1].id , false);
-					req.setRequestHeader("X-API-Key", "310def0e53f04c0b814fa8f3c05124fb");
-					req.send();
-				}*/
             }
 		
 			return React.createElement("div", { style: { height:"100%", position: "absolute", left:"310px"}},
-						React.createElement("div", null, 
-							React.createElement("h4", null, this.props.device.name + " - " + this.props.device.devEUI),
+						React.createElement("div", null, 							
+							React.createElement("h4", null, this.props.device.name + " - " + this.props.device.devEUI),							
 							"Filtre date : ",							
-							React.createElement("input", {type:"date", value: getDateString( this.state.date ), onChange: this.dateChange })/*,						
-							React.createElement("button", null, "Exporter en CSV")*/
+							React.createElement("input", {type:"date", value: getDateString( this.state.date ), onChange: this.dateChange }),
+							React.createElement("button", { onClick: this.exportClick, style :{ marginLeft:"15px"}}, "Télécharger le CSV"),
+							React.createElement("a", { id:"exportCSV" , style :{ display:"none"}})
 						),
 						React.createElement("br"),
 						React.createElement("div", { style: { height:"75%", overflow:"auto" } },
