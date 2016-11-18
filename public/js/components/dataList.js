@@ -13,7 +13,7 @@ define(function (require)
 		{
 			var date = new Date(sender.target.value);
 
-			if (sender.target.value == getDateString(date))
+			if (sender.target.value == dateHelper.getDateString(date))
 			{
 				this.state.date = date;
 
