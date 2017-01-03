@@ -1,7 +1,7 @@
 define(function (require)
 {
 	var apiWebSite = "https://liveobjects.orange-business.com/api/v0/";
-	var apiKey = "310def0e53f04c0b814fa8f3c05124fb";
+	var apiKey = "7ffdc24c672c4916a3268b06d402896b";
 
 	function getDeviceList(callback)
 	{
