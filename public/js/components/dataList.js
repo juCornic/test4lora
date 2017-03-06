@@ -116,7 +116,8 @@ define(function (require)
 								React.createElement("th", null, "#"),
 								React.createElement("th", null, "fcnt"),
 								React.createElement("th", null, "Date et heure"),
-								React.createElement("th", null, "Valeur")
+								React.createElement("th", null, "Valeur"),
+								React.createElement("th", null, "Niveau")
 							),
 
 							this.state.dataList.map(function (data, index)
@@ -132,7 +133,8 @@ define(function (require)
 									React.createElement("td",{ style :{ padding:"0 15px 0 15px"}}, comp.state.dataList.length - index ),
 									React.createElement("td",{ style :{ padding:"0 15px 0 15px"}}, data.value.fcnt ),
 									React.createElement("td",{ style :{ padding:"0 15px 0 15px"}}, new Date(data.timestamp).toLocaleString()),
-									React.createElement("td", { style :{ padding:"0 15px 0 15px"}}, stringHelper.fromHexa(data.value.payload))
+									React.createElement("td", { style :{ padding:"0 15px 0 15px"}}, stringHelper.fromHexa(data.value.payload)),
+									React.createElement("td", { style :{ padding:"0 15px 0 15px"}}, data.value.signalLevel)
 								)
 							})
 						)
