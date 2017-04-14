@@ -117,7 +117,10 @@ define(function (require)
 								React.createElement("th", null, "fcnt"),
 								React.createElement("th", null, "Date et heure"),
 								React.createElement("th", null, "Valeur"),
-								React.createElement("th", null, "Niveau")
+								React.createElement("th", null, "Niveau"),
+								React.createElement("th", null, "RSSI"),
+								React.createElement("th", null, "SF"),
+								React.createElement("th", null, "SNR")
 							),
 
 							this.state.dataList.map(function (data, index)
@@ -134,7 +137,10 @@ define(function (require)
 									React.createElement("td",{ style :{ padding:"0 15px 0 15px"}}, data.value.fcnt ),
 									React.createElement("td",{ style :{ padding:"0 15px 0 15px"}}, new Date(data.timestamp).toLocaleString()),
 									React.createElement("td", { style :{ padding:"0 15px 0 15px"}}, stringHelper.fromHexa(data.value.payload)),
-									React.createElement("td", { style :{ padding:"0 15px 0 15px"}}, data.value.signalLevel)
+									React.createElement("td", { style :{ padding:"0 15px 0 15px"}}, data.value.signalLevel),
+									React.createElement("td", { style :{ padding:"0 15px 0 15px"}}, data.metadata.network.lora.rssi),
+									React.createElement("td", { style :{ padding:"0 15px 0 15px"}}, data.metadata.network.lora.sf),
+									React.createElement("td", { style :{ padding:"0 15px 0 15px"}}, data.metadata.network.lora.snr)
 								)
 							})
 						)
