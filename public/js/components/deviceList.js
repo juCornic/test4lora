@@ -7,7 +7,7 @@ define(function (require)
 
         deviceClick: function(sender)
         {
-            var selectedEUI = sender.target.innerText.split(" - ")[1];
+            var selectedEUI = sender.target.innerText.split(" | ")[1];
 
             for(var i = 0 ; i < this.props.deviceList.length; i++)
             {
@@ -46,7 +46,7 @@ define(function (require)
                     {
                         return React.createElement("ul", {style:{listStyle: "none"}},
                             React.createElement("li", { onClick: comp.deviceClick },
-                                React.createElement("a", { href:"#"}, device.name + " - " + device.devEUI)
+                                React.createElement("a", { href:"#"}, device.name + " | " + device.devEUI)
                             )
                         );
                     }
