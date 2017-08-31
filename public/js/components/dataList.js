@@ -134,10 +134,10 @@ define(function (require)
 
 								return React.createElement("tr", {style : { background: backColor}},
 									React.createElement("td",{ style :{ padding:"0 15px 0 15px"}}, comp.state.dataList.length - index ),
-									React.createElement("td",{ style :{ padding:"0 15px 0 15px"}}, data.value.fcnt ),
+									React.createElement("td",{ style :{ padding:"0 15px 0 15px"}}, data.metadata.network.lora.fcnt ),
 									React.createElement("td",{ style :{ padding:"0 15px 0 15px"}}, new Date(data.timestamp).toLocaleString()),
 									React.createElement("td", { style :{ padding:"0 15px 0 15px"}}, stringHelper.fromHexa(data.value.payload)),
-									React.createElement("td", { style :{ padding:"0 15px 0 15px"}}, data.value.signalLevel),
+									React.createElement("td", { style :{ padding:"0 15px 0 15px"}}, data.metadata.network.lora.signalLevel),
 									React.createElement("td", { style :{ padding:"0 15px 0 15px"}}, data.metadata.network.lora.rssi),
 									React.createElement("td", { style :{ padding:"0 15px 0 15px"}}, data.metadata.network.lora.sf),
 									React.createElement("td", { style :{ padding:"0 15px 0 15px"}}, data.metadata.network.lora.snr)
