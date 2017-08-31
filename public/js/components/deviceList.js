@@ -38,7 +38,7 @@ define(function (require)
                     {
                         return React.createElement("ul", {style:{background:"#2196F3", listStyle: "none"}},
                             React.createElement("li", { onClick: comp.deviceClick },
-                                React.createElement("a", { href:"#", style:{color:"#ffffff"}}, device.name + " - " + device.devEUI)
+                                React.createElement("a", { href:"#", style:{color:"#ffffff"}}, device.name + " | " + device.devEUI)
                             )
                         );
                     }
