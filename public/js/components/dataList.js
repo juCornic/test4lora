@@ -32,7 +32,7 @@ define(function (require)
 			for(var i = 0 ; i < this.state.dataList.length ; i++)
 			{
 				csvText += (this.state.dataList.length - i).toString() + separator;
-				csvText += this.state.dataList[i].value.fcnt.toString() + separator;
+				csvText += this.state.dataList[i].metadata.network.lora.fcnt.toString() + separator;
 				csvText += this.state.dataList[i].timestamp.toLocaleString().replace("à", "") + separator;
 				csvText += stringHelper.fromHexa(this.state.dataList[i].value.payload) + separator;
 				csvText += "\n";
