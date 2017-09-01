@@ -27,14 +27,25 @@ define(function (require)
 			var csvText = "";
 
 			csvText = "data:text/csv;charset=utf-8,";
-			csvText += "Num" + separator + "fcnt" + separator + "Date et heure" + separator + "Valeur\n";
+			csvText += "Num" + separator + 
+			"fcnt" + separator + 
+			"Date et heure" + separator + 
+			"Valeur" + separator + 
+			"Niveau" + separator + 
+			"RSSI" + separator + 
+			"SF" + separator + 
+			"SNR\n";
 
 			for(var i = 0 ; i < this.state.dataList.length ; i++)
 			{
 				csvText += (this.state.dataList.length - i).toString() + separator;
-				csvText += this.state.dataList[i].metadata.network.lora.fcnt.toString() + separator;
-				csvText += this.state.dataList[i].timestamp.toLocaleString().replace("à", "") + separator;
+				csvText += this.state.dataList[i].metadata.network.lora.fcnt.toString() + separator;				
+				csvText += new Date(this.state.dataList[i].timestamp).toLocaleString().replace("à", "") + separator;
 				csvText += stringHelper.fromHexa(this.state.dataList[i].value.payload) + separator;
+				csvText += this.state.dataList[i].metadata.network.lora.signalLevel + separator;
+				csvText += this.state.dataList[i].metadata.network.lora.rssi + separator;
+				csvText += this.state.dataList[i].metadata.network.lora.sf + separator;
+				csvText += this.state.dataList[i].metadata.network.lora.snr + separator;
 				csvText += "\n";
 			}
 
